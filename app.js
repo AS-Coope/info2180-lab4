@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 const httpRequest = new XMLHttpRequest();
+const resultDiv = document.getElementById("result");
 let resourceUrl = "http://localhost/info2180-lab4/superheroes.php";
 
 // make request to the server
@@ -21,7 +22,7 @@ function returnAvengers() {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
         if (httpRequest.status === 200) {
             let response = httpRequest.responseText;
-            alert(response);
+            resultDiv.innerHTML = response;
         } else {
             alert("Error: Could not load Avengers data!");
         }
