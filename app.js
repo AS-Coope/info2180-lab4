@@ -11,10 +11,13 @@ let resourceUrl = "http://localhost/info2180-lab4/superheroes.php";
 
 form.addEventListener("submit", (event) => {
     event.preventDefault() // stop the form from submitting
-    if (checkEmptyString(searchField.value.trim())) {
+    if (checkEmptyString(searchField.value.trim()) || checkValidName(searchField.value.trim())) {
         // if the tests prove true, then submit data
+        console.log("Working!");
+        makeAjaxRequest();
     } else {
         // inform the user that what was entered is invalid/ not found in the 'database/array'
+        console.log("Error! Could not get your request")
     }
 });
 
@@ -22,13 +25,15 @@ function checkEmptyString(enteredData) {
     return enteredData.length === 0 ? true : false;
 }
 
+function checkValidName(enteredName) {
+    return /[a-zA-Z\s]+/.test(enteredName);
+}
+
 
 // make request to the server
 function makeAjaxRequest() {
 
-    httpRequest.onreadystatechange = form.addEventListener("click", (event) => {
-        returnAvengers();
-    });
+    httpRequest.onreadystatechange = returnAvengers(searchField.value.trim());
     httpRequest.open("GET", resourceUrl);
     httpRequest.send();
 }
