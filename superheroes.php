@@ -1,6 +1,7 @@
 <?php
 
 header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST");
 $superheroes = [
   [
       "id" => 1,
@@ -64,6 +65,16 @@ $superheroes = [
   ], 
 ];
 
+?>
+<?php
+    $search_value = $_POST['name'];
+
+    $hero_name = filter_input(INPUT_POST, $search_value, FILTER_SANITIZE_STRING);
+
+    if (empty($hero_name)){
+        echo "No hero selected";
+        print_r($_POST);
+    }
 ?>
 
 <ul>

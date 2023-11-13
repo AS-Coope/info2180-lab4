@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 const httpRequest = new XMLHttpRequest();
 const resultDiv = document.getElementById("result");
-const searchField = document.getElementById("searchField");
+const searchField = document.getElementById("name");
 const searchBtn = document.getElementById("searchBtn");
 const form = document.querySelector("form");
 let resourceUrl = "http://localhost/info2180-lab4/superheroes.php";
 
 form.addEventListener("submit", (event) => {
-    event.preventDefault() // stop the form from submitting
+    event.preventDefault();
     if (checkEmptyString(searchField.value.trim()) || checkValidName(searchField.value.trim())) {
         // if the tests prove true, then submit data
         console.log("Working!");
@@ -34,7 +34,7 @@ function checkValidName(enteredName) {
 function makeAjaxRequest() {
 
     httpRequest.onreadystatechange = returnAvengers(searchField.value.trim());
-    httpRequest.open("GET", resourceUrl);
+    httpRequest.open("POST", resourceUrl);
     httpRequest.send();
 }
 
