@@ -17,7 +17,7 @@ form.addEventListener("submit", (event) => {
         makeAjaxRequest();
     } else {
         // inform the user that what was entered is invalid/ not found in the 'database/array'
-        console.log("Error! Could not get your request")
+        console.log("Sorry, please enter the name of an Avenger.");
     }
 });
 
